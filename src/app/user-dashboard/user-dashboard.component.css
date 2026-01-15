@@ -1,0 +1,118 @@
+:host {
+  --dark: #383838;
+  --blue: #1c4980;
+  --radius: 6px;
+}
+
+.dashboard {
+  padding: 24px;
+  background: #f4f6f8;
+  min-height: 100vh;
+}
+
+.title {
+  margin-bottom: 20px;
+  color: var(--dark);
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  height: 48px !important;
+  padding: 0 24px !important;
+  background: var(--blue) !important;
+  color: #fff !important;
+  border-radius: var(--radius) !important;
+  text-transform: none !important;
+}
+
+.search {
+  flex: 1;
+}
+
+.search ::ng-deep .mat-mdc-text-field-wrapper {
+  height: 48px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: 20px;
+}
+
+.col-left.full-width {
+  grid-column: 1 / -1;
+}
+
+.col-left {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.simple-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.simple-table th {
+  background: #f1f1f1;
+  color: var(--dark);
+  font-weight: 600;
+  padding: 14px;
+}
+
+.simple-table td {
+  padding: 14px;
+}
+
+.role {
+  padding: 6px 14px;
+  background: var(--blue);
+  color: #fff;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.col-right {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+
+@media (max-width: 992px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+  .col-right {
+    margin-top: 20px;
+  }
+}
+
+.no-data {
+  text-align: center;
+  color: var(--dark);
+  padding: 40px 0;
+  font-size: 16px;
+}
+
+.right canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.chart-box {
+  height: 320px;
+  position: relative;
+}
+
+.chart-box canvas {
+  width: 100% !important;
+  height: 100% !important;
+}

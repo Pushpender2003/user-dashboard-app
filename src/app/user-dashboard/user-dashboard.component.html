@@ -1,0 +1,58 @@
+<div class="dashboard">
+    <h2 class="title">User Management</h2>
+
+    <div class="row">
+
+        <div class="col-left" [class.full-width]="!dataSource?.data?.length">
+            <div class="controls">
+                <button mat-raised-button class="btn-primary" (click)="openUserForm()">
+                    Add User
+                </button>
+
+                <mat-form-field appearance="outline" class="search">
+                    <mat-label>Search</mat-label>
+                    <input matInput (keyup)="applyFilter($event)">
+                </mat-form-field>
+            </div>
+
+            <table mat-table [dataSource]="dataSource" class="simple-table"
+                *ngIf="dataSource?.data?.length; else noData">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td style="cursor: pointer;" (click)="onRowClick(user)" mat-cell *matCellDef="let user">{{ user.name
+                        }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>Email</th>
+                    <td style="cursor: pointer;" (click)="onRowClick(user)" mat-cell *matCellDef="let user">{{
+                        user.email }}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="role">
+                    <th mat-header-cell *matHeaderCellDef>Role</th>
+                    <td style="cursor: pointer;" (click)="onRowClick(user)" mat-cell *matCellDef="let user">
+                        <span class="role">{{ user.role }}</span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+
+            <ng-template #noData>
+                <p class="no-data">No users added yet</p>
+            </ng-template>
+
+            <mat-paginator [pageSize]="5" *ngIf="dataSource?.data?.length"></mat-paginator>
+        </div>
+
+        <div *ngIf="dataSource?.data?.length" class="col-right">
+            <h3>Role Distribution</h3>
+
+            <div class="chart-box">
+                <canvas #roleChart></canvas>
+            </div>
+        </div>
+    </div>
+</div>

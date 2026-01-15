@@ -1,0 +1,55 @@
+<div class="form-container">
+  <h2 mat-dialog-title>{{ data ? 'Edit User' : 'Add New User' }}</h2>
+  
+  <form [formGroup]="form">
+    <mat-grid-list [cols]="cols" rowHeight="fit" gutterSize="16px">
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline" style="width:100%">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name" placeholder="Enter name" />
+          <mat-error *ngIf="form.get('name')?.hasError('required')">
+            Name is required
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field appearance="outline" style="width:100%">
+          <mat-label>Email</mat-label>
+          <input matInput type="email" formControlName="email" placeholder="Enter email" />
+          <mat-error *ngIf="form.get('email')?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="form.get('email')?.hasError('email')">
+            Invalid email format
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="cols">
+        <mat-form-field appearance="outline" style="width:100%">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role" placeholder="Select role">
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{ role }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="form.get('role')?.hasError('required')">
+            Role is required
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="cols">
+        <button mat-raised-button color="primary" 
+                (click)="submit()" 
+                type="button"
+                [disabled]="form.invalid">
+          {{ data ? 'Update' : 'Submit' }}
+        </button>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </form>
+</div>
